@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       theme: ThemeData(),
       // home: const PageOne(),
-      initialRoute: '/',
+      initialRoute: '/second',
       routes: {
         '/': (context) => const PageOne(),
         '/second': (context) => const PageTwo(

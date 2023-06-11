@@ -24,11 +24,10 @@ class _PageTwoState extends State<PageTwo> {
           onPressed: () {
             Navigator.pop(context);
           },
-          child: Column(
+          child: const Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              const Text('Go to Page 1'),
-              Text(widget.text),
+              Text('Go to Page 1'),
             ],
           ),
         ),
