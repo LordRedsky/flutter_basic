@@ -138,6 +138,27 @@ class _PageOneState extends State<PageOne> {
                 }
               });
             },
+          ),
+          SizedBox(
+            height: 45,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              GestureDetector(
+                onTap: () {
+                  // print('sekali jo');
+                  Navigator.of(context).pushNamed('/second');
+                },
+                child: const Text('Klik Sekali'),
+              ),
+              InkWell(
+                onDoubleTap: () {
+                  print('ontap 2');
+                },
+                child: const Text('Klik duakali'),
+              ),
+            ],
           )
         ],
       ),
