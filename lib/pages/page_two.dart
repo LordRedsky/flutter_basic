@@ -13,21 +13,46 @@ class PageTwo extends StatefulWidget {
 }
 
 class _PageTwoState extends State<PageTwo> {
+  late DateTime selectedDate;
+
+  void _selectedDate(BuildContext context) async {
+    final DateTime? picked = await showDatePicker(
+      context: context,
+      initialDate: selectedDate,
+      firstDate: DateTime(2000),
+      lastDate: DateTime(2045),
+    );
+
+    if (picked != null && picked != selectedDate) {
+      setState(() {
+        selectedDate = picked;
+      });
+    }
+  }
+
+  @override
+  void initState() {
+    selectedDate = DateTime.now();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Page Two'),
+        title: const Text('Page Two & Date Time Picker'),
       ),
       body: Center(
         child: ElevatedButton(
           onPressed: () {
-            Navigator.pop(context);
+            // Navigator.pop(context);
+            _selectedDate(context);
           },
-          child: const Column(
+          child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Text('Go to Page 1'),
+              const Text('Select Date'),
+              Text(selectedDate.toIso8601String()),
             ],
           ),
         ),
