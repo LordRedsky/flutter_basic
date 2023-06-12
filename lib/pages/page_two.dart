@@ -14,6 +14,7 @@ class PageTwo extends StatefulWidget {
 
 class _PageTwoState extends State<PageTwo> {
   late DateTime selectedDate;
+  late TimeOfDay selectedTime;
 
   void _selectedDate(BuildContext context) async {
     final DateTime? picked = await showDatePicker(
@@ -30,9 +31,23 @@ class _PageTwoState extends State<PageTwo> {
     }
   }
 
+  void _selectedTime(BuildContext context) async {
+    final TimeOfDay? picked = await showTimePicker(
+      context: context,
+      initialTime: selectedTime,
+    );
+
+    if (picked != null && picked != selectedTime) {
+      setState(() {
+        selectedTime = picked;
+      });
+    }
+  }
+
   @override
   void initState() {
     selectedDate = DateTime.now();
+    selectedTime = const TimeOfDay(hour: 20, minute: 21);
     super.initState();
   }
 
@@ -46,13 +61,16 @@ class _PageTwoState extends State<PageTwo> {
         child: ElevatedButton(
           onPressed: () {
             // Navigator.pop(context);
-            _selectedDate(context);
+            // _selectedDate(context);
+            _selectedTime(context);
           },
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              const Text('Select Date'),
-              Text(selectedDate.toIso8601String()),
+              // const Text('Select Date'),
+              // Text(selectedDate.toIso8601String()),
+              const Text('Select TIme'),
+              Text('${selectedTime.hour}:${selectedTime.minute}'),
             ],
           ),
         ),
